@@ -27,13 +27,14 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/editText"
+                android:id="@+id/editTextUsername"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:contentDescription="Your name"
                 android:ems="10"
+                android:hint="Your name"
                 android:inputType="textPersonName"
-                android:text="Your name"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="15sp"
@@ -58,13 +59,13 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/editTextHotelReview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
+                android:hint="Hotel review here"
                 android:inputType="textPersonName"
-                android:text="Hotel review here"
                 android:textAlignment="center"
                 android:textStyle="italic" />
 
@@ -86,12 +87,12 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/editText3"
+                android:id="@+id/editTextTransportReview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:hint="Transport arrangements review here"
                 android:inputType="textPersonName"
-                android:text="Transport arrangements review here"
                 android:textAlignment="center"
                 android:textStyle="italic" />
 
@@ -113,14 +114,28 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/editText4"
+                android:id="@+id/editTextOverallRating"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:hint="Enter an integer"
                 android:inputType="numberDecimal"
-                android:text="Enter an integer"
                 android:textAlignment="center"
                 android:textStyle="italic" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/buttonSubmit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Submit Feedback" />
         </LinearLayout>
 
     </LinearLayout>
