@@ -1,143 +1,93 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="travelfeedback.abdul.com.travelfeedback.MainActivity">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <LinearLayout
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+    </android.support.design.widget.AppBarLayout>
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Your name"
-                android:textSize="21sp"
-                android:textStyle="bold" />
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="60dp">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_userName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <EditText
                 android:id="@+id/editTextUsername"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:contentDescription="Your name"
-                android:ems="10"
-                android:hint="Your name"
-                android:inputType="textPersonName"
-                android:textAlignment="center"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="15sp"
-                android:textStyle="italic" />
+                android:singleLine="true"
+                android:hint="Your name" />
+        </android.support.design.widget.TextInputLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_hotelReview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="How was your Hotel?"
-                android:textSize="21sp"
-                android:textStyle="bold" />
+            android:layout_height="wrap_content">
 
             <EditText
                 android:id="@+id/editTextHotelReview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:hint="Hotel review here"
-                android:inputType="textPersonName"
-                android:textAlignment="center"
-                android:textStyle="italic" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="How were the transport arrangements?"
-                android:textSize="21sp"
-                android:textStyle="bold" />
+                android:hint="Hotel review here" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_transportReview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <EditText
                 android:id="@+id/editTextTransportReview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Transport arrangements review here"
-                android:inputType="textPersonName"
-                android:textAlignment="center"
-                android:textStyle="italic" />
+                android:hint="Transport arrangement review here" />
+        </android.support.design.widget.TextInputLayout>
 
-        </LinearLayout>
 
-        <LinearLayout
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_overallRating"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Overall rating (out of 5)"
-                android:textAlignment="center"
-                android:textSize="21sp"
-                android:textStyle="bold" />
+            android:layout_height="wrap_content">
 
             <EditText
                 android:id="@+id/editTextOverallRating"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Enter an integer"
+                android:hint="Rating(Out of 5)"
                 android:inputType="numberDecimal"
                 android:textAlignment="center"
                 android:textStyle="italic" />
+        </android.support.design.widget.TextInputLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/buttonSubmit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Submit Feedback" />
-        </LinearLayout>
+        <Button android:id="@+id/buttonSubmit"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:background="@color/colorPrimary"
+            android:layout_marginTop="40dp"
+            android:textColor="@android:color/white"/>
 
     </LinearLayout>
 
-</android.widget.RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

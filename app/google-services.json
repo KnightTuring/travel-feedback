@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "1058779648808",
+    "firebase_url": "https://travel-junction.firebaseio.com",
+    "project_id": "travel-junction",
+    "storage_bucket": "travel-junction.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1058779648808:android:a775cbf2d8406485",
+        "android_client_info": {
+          "package_name": "travelfeedback.abdul.com.travelfeedback"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1058779648808-7unlvd9rd9h845dbc2p73686dp45p7af.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "travelfeedback.abdul.com.travelfeedback",
+            "certificate_hash": "5728cbdc21c3dbeab054f9516f723398c36fadb7"
+          }
+        },
+        {
+          "client_id": "1058779648808-ifaqmfq4612js26iv602rn5u9empirrr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "travelfeedback.abdul.com.travelfeedback",
+            "certificate_hash": "1a45934b2fc62bca51a85fb3498371e438c9a0b2"
+          }
+        },
+        {
+          "client_id": "1058779648808-cd8qdq6g4vrq3p0ft4odns3q8smm28s3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDx97uSDjRI59TouSGpC4ELP1XzkkW6ZqI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1058779648808-cd8qdq6g4vrq3p0ft4odns3q8smm28s3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
