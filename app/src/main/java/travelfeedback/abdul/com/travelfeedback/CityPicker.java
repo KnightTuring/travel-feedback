@@ -5,17 +5,24 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.iid.FirebaseInstanceId;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CityPicker extends AppCompatActivity {
 
     Button buttonProceed;
+    Button buttonLogOut;
     Spinner spinnerCityPicker;
     String selectedSpinnerItem;
 
@@ -25,7 +32,9 @@ public class CityPicker extends AppCompatActivity {
         setContentView(R.layout.activity_city_picker);
 
         buttonProceed = findViewById(R.id.buttonProceed);
+        buttonLogOut = findViewById(R.id.buttonLogOut);
         spinnerCityPicker = findViewById(R.id.spinnerCity);
+
 
         List<String> spinnerArray = new ArrayList<>();
         spinnerArray.add("Delhi");
@@ -40,6 +49,20 @@ public class CityPicker extends AppCompatActivity {
             public void onClick(View v) {
 
                 moveToNewActivity();
+            }
+        });
+
+        buttonLogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    logUserOut();
+                }
+                catch (Exception e)
+                {
+                    Log.d("myTag","An exception occurred while logging user out");
+                }
+
             }
         });
     }
@@ -65,5 +88,24 @@ public class CityPicker extends AppCompatActivity {
             //error please pick a city
         }
 
+    }
+
+    public void logUserOut()
+    {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser mUser = mAuth.getCurrentUser();
+
+        try {
+            FirebaseInstanceId.getInstance().deleteInstanceId();
+        }
+        catch (Exception e)
+        {
+            Log.d("MyTag","An exception while deleting InstanceID");
+        }
+
+        mAuth.signOut();
+
+        Intent intent = new Intent(this,LoginActivity.class);
+        startActivity(intent);
     }
 }

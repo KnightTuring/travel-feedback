@@ -19,6 +19,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
 
+import java.util.HashMap;
+
 public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
@@ -66,9 +68,9 @@ public class LoginActivity extends AppCompatActivity {
                     //sign in successful!
                     Log.println(Log.INFO, "mytag" , "Sign in successful");
                     instanceToken = FirebaseInstanceId.getInstance().getToken();
-                    addTokenToFirebase(instanceToken);
                     Log.println(Log.INFO, "mytag" , "Token obtained:"+instanceToken);
                     FirebaseUser user = mAuth.getCurrentUser();
+                    addTokenToFirebase(instanceToken,user);
                     Toast.makeText(LoginActivity.this,"Signed in!",Toast.LENGTH_SHORT).show();
                     onSuccessfulSignIn();
                 }
@@ -89,12 +91,40 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    public void addTokenToFirebase(String fcmToken)
+    public void addTokenToFirebase(String fcmToken,FirebaseUser signedInUser)
     {
-        DatabaseReference firebaseDatabase;
-        firebaseDatabase = FirebaseDatabase.getInstance().getReference();
-        Log.d("myTag" , "Writing FCM Token to Firebase");
-        firebaseDatabase.child("adminToken").child("token").setValue(fcmToken);
-        Log.d("myTag" , "Written FCM Token to Firebase");
+        String email = signedInUser.getEmail();
+        String name=" ";
+        if(email.equals("abdulwasay50@gmail.com") || email.equals("akshayphadnis1994@gmail.com"))
+        {
+            HashMap<String,String> tokenDetails = new HashMap<>();
+            //admins
+            if(email.equals("abdulwasay50@gmail.com"))
+            {
+                name="Abdul";
+
+            }
+            else if(email.equals("akshayphadnis1994@gmail.com"))
+            {
+                name = "Akshay";
+            }
+            tokenDetails.put("adminName",name);
+            tokenDetails.put("token",fcmToken);
+
+            DatabaseReference firebaseDatabase;
+            firebaseDatabase = FirebaseDatabase.getInstance().getReference();
+            Log.d("myTag" , "Writing FCM Token to Firebase");
+            //firebaseDatabase.child("adminToken").child("token").setValue(fcmToken);
+
+            firebaseDatabase.child("adminToken").child(name).setValue(tokenDetails);
+            Log.d("myTag" , "Written FCM Token to Firebase");
+        }
+        else
+        {
+            //Do nothing with token since user isn't admin
+        }
+
+
+
     }
 }
