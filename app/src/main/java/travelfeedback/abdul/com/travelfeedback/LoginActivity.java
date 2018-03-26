@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onSuccessfulSignIn()
     {
-        Intent intent = new Intent(this, CityPicker.class);
+        Intent intent = new Intent(this, CityPickerFinal.class);
         startActivity(intent);
 
     }

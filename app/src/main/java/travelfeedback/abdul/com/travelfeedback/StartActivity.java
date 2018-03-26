@@ -23,7 +23,7 @@ public class StartActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                Intent i = new Intent(getApplicationContext(),CityPickerFinal.class);
+                Intent i = new Intent(getApplicationContext(),LoginActivity.class);
                 startActivity(i);
 
                 // close this activity
