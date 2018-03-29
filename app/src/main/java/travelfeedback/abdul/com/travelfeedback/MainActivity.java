@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if(status == true && retValue == true)
                 {
-                    Log.println(Log.INFO,"MyMessage","Written to Firebase");
+                    Log.println(Log.INFO,"MyMessage","Written to Firebase,feedback updated");
                     //SUCCESS
 
                     Toast.makeText(getApplicationContext(),"Thank you for your valuable feedback.",Toast.LENGTH_LONG).show();
