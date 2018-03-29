@@ -1,6 +1,8 @@
 package travelfeedback.abdul.com.travelfeedback;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,6 +25,10 @@ import java.util.HashMap;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private ProgressDialog progressBar;
+    private int progressBarStatus = 0;
+    private Handler progressBarbHandler = new Handler();
+
     private FirebaseAuth mAuth;
     EditText editTextUserName, editTextPassword;
     Button buttonLogin;
@@ -32,6 +38,13 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        progressBar = new ProgressDialog(this);
+
+        progressBar.setTitle("Logging in...");
+        progressBar.setMessage("Please wait..");
+        progressBar.setCancelable(false);
+        progressBar.setIndeterminate(true);
+
 
         //init FirebaseAuth object
         mAuth = FirebaseAuth.getInstance();
@@ -41,9 +54,21 @@ public class LoginActivity extends AppCompatActivity {
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signInMethod();
+
+
+                progressBar.show();
+
+               signInMethod();
+
+
+
             }
         });
+
+
+
+
+
 
 
     }
@@ -72,12 +97,17 @@ public class LoginActivity extends AppCompatActivity {
                     FirebaseUser user = mAuth.getCurrentUser();
                     addTokenToFirebase(instanceToken,user);
                     Toast.makeText(LoginActivity.this,"Signed in!",Toast.LENGTH_SHORT).show();
+
+                    progressBar.dismiss();
+
                     onSuccessfulSignIn();
+
                 }
                 else
                 {
                     Log.println(Log.INFO, "mytag" , "Sign in failed");
                     Toast.makeText(LoginActivity.this,"Authentication Failed",Toast.LENGTH_SHORT).show();
+                    progressBar.dismiss();
                 }
             }
         });
@@ -86,7 +116,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onSuccessfulSignIn()
     {
-        Intent intent = new Intent(this, CityPicker.class);
+        Intent intent = new Intent(this, CityPickerFinal.class);
         startActivity(intent);
 
     }
@@ -119,9 +149,21 @@ public class LoginActivity extends AppCompatActivity {
             firebaseDatabase.child("adminToken").child(name).setValue(tokenDetails);
             Log.d("myTag" , "Written FCM Token to Firebase");
         }
+        else if (email.equals("ritvik.bhavan@gmail.com"))
+        {
+            name = "Ritvik";
+            DatabaseReference firebaseDatabase;
+            firebaseDatabase = FirebaseDatabase.getInstance().getReference();
+            HashMap<String,String> tripData = new HashMap<>();
+            tripData.put("tripCity","Ladakh");
+            tripData.put("dateTimeStamp","2345");
+            tripData.put("token",fcmToken);
+            firebaseDatabase.child("tripList").child(name).setValue(tripData);
+        }
         else
         {
             //Do nothing with token since user isn't admin
+
         }
 
 

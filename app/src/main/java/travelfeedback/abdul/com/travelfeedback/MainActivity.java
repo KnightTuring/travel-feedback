@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main);//activity_main);
         //initialize XML views
         initialize();
 
@@ -43,10 +43,10 @@ public class MainActivity extends AppCompatActivity {
 
                 if(status == true && retValue == true)
                 {
-                    Log.println(Log.INFO,"MyMessage","Written to Firebase");
+                    Log.println(Log.INFO,"MyMessage","Written to Firebase,feedback updated");
                     //SUCCESS
 
-                    Toast.makeText(getApplicationContext(),"Written to Firebase",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Thank you for your valuable feedback.",Toast.LENGTH_LONG).show();
                     exit();
                 }
                 else
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
     public void exit()
     {
         userFeedback.clear();
-        Intent intent = new Intent(this, CityPicker.class);
+        Intent intent = new Intent(this, CityPickerFinal.class);
         startActivity(intent);
     }
 }

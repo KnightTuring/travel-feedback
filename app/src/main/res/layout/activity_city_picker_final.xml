@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="travelfeedback.abdul.com.travelfeedback.CityPickerFinal">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="iccubea.iccubea2017.com.iccubea.TrackYourPaper"
+        android:id="@+id/relativeLayout"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        >
+
+        <EditText
+            android:id="@+id/editTextSearch"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignEnd="@+id/listView"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignRight="@+id/listView"
+            android:layout_weight="2"
+            android:hint="Enter city name."
+            android:inputType="textPersonName" />
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/editTextSearch"
+            android:layout_weight="0.5" />
+
+        <TextView
+            android:id="@+id/textViewHelper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/listView"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="0"
+            android:gravity="center_horizontal"
+            android:text="New Text"
+            android:textColor="#00000000" />
+
+
+    </LinearLayout>
+</RelativeLayout>
