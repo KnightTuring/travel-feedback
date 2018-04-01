@@ -25,6 +25,7 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import java.util.HashMap;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
+import travelfeedback.abdul.com.travelfeedback.cloudStorage.File_MainActivity;
 import travelfeedback.abdul.com.travelfeedback.feedbackModule.CityPickerFinal;
 import travelfeedback.abdul.com.travelfeedback.R;
 
@@ -52,8 +53,8 @@ public class LoginActivity extends AppCompatActivity {
         initialise();
 
         pDialog = new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.PROGRESS_TYPE);
-        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
-        pDialog.setTitleText("Loading");
+        pDialog.getProgressHelper().setBarColor(Color.parseColor("#000000"));
+        pDialog.setTitleText("Logging in");
         pDialog.setCancelable(false);
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
@@ -117,7 +118,8 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onSuccessfulSignIn()
     {
-        Intent intent = new Intent(this, CityPickerFinal.class);
+//        Intent intent = new Intent(this, CityPickerFinal.class);
+        Intent intent = new Intent(this, File_MainActivity.class);
         startActivity(intent);
 
     }

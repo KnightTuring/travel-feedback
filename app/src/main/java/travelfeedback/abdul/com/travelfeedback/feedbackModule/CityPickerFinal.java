@@ -25,8 +25,11 @@ import travelfeedback.abdul.com.travelfeedback.R;
 public class CityPickerFinal extends AppCompatActivity {
 
 
-    String[] cities, resultsCities;
+    String[] resultsCities;
 
+
+    //String[] cities = {"Aurangabad","Simla","Delhi","Pune","Mumbai", "Leh", "Haridwar", "Kaniyakumari", "Port Blair", "Hyderabad"};
+    String [] cities;// = new String[];{"Aurangabad", "Simla", "Delhi", "Pune", "Mumbai", "Leh", "Haridwar", "Kaniyakumari", "Port Blair", "Hyderabad"};
     SQLiteDatabase citiesDb;
     Cursor databaseCities;
     EditText editTextSearch;
@@ -129,8 +132,8 @@ public class CityPickerFinal extends AppCompatActivity {
 
     private void initialize() {
 
-        //cities = new String[] {"Aurangabad","Simla","Delhi", "Pune", "Mumbai", "Leh", "Haridwar", "Kaniyakumari", "Port Blair", "Hyderabad"};
-        cities = new String[]{"Aurangabad","Simla","Delhi", "Pune", "Mumbai", "Leh", "Haridwar", "Kaniyakumari", "Port Blair", "Hyderabad"};
+        //cities = new String[20]; // {"Aurangabad","Simla","Delhi", "Pune", "Mumbai", "Leh", "Haridwar", "Kaniyakumari", "Port Blair", "Hyderabad"};
+        cities = new String[]{"Ladakh","Aurangabad", "Simla", "Delhi", "Pune", "Mumbai", "Leh", "Haridwar", "Kaniyakumari", "Port Blair", "Hyderabad"};
         citiesDb = openOrCreateDatabase("CitiesDb", MODE_PRIVATE, null);
         citiesDb.execSQL("CREATE TABLE IF NOT EXISTS CitiesDb(cityName VARCHAR);");
         citiesDb.delete("CitiesDb", null, null);
@@ -139,8 +142,9 @@ public class CityPickerFinal extends AppCompatActivity {
         citiesDb = openOrCreateDatabase("CitiesDb", MODE_PRIVATE, null);
         citiesDb.execSQL("CREATE TABLE IF NOT EXISTS CitiesDb(cityName VARCHAR);");
 
-        for (int i = 0; i < cities.length; i++)
+        for (int i = 0; i < cities.length; i++) {
             citiesDb.execSQL("INSERT INTO CitiesDb values('" + cities[i] + "');");
+        }
 
         editTextSearch = (EditText) findViewById(R.id.editTextSearch);
         listView = (ListView) findViewById(R.id.listView);
