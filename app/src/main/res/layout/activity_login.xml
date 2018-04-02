@@ -60,7 +60,7 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <AutoCompleteTextView
+                    <EditText
                         android:id="@+id/editTextUsername"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -84,7 +84,8 @@
                         android:maxLines="1"
                         android:singleLine="true"
                         android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                        android:textColorHint="@android:color/darker_gray" />
+                        android:textColorHint="@android:color/darker_gray"
+                        android:nextFocusForward="@+id/buttonLogin"/>
 
                     <Button
                         android:id="@+id/buttonLogin"
@@ -92,7 +93,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:background="?attr/actionModeSplitBackground"
+                        android:background="#243cd3"
                         android:text="@string/action_sign_in"
                         android:textColor="#ffffffff"
                         android:textStyle="bold" />

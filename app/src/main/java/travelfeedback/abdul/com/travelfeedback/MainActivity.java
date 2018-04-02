@@ -1,8 +1,11 @@
 package travelfeedback.abdul.com.travelfeedback;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -72,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
         userCity = sharedPreferences.getString("City","");
         Log.println(Log.INFO,"MyMessage","Got city "+userCity);
     }
+
 
     public boolean setMapData()
     {
