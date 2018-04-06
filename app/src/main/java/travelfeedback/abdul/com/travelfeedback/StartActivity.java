@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
+import travelfeedback.abdul.com.travelfeedback.userHandler.LoginActivity;
+
 public class StartActivity extends AppCompatActivity {
     private static int SPLASH_TIME_OUT = 1500;
 

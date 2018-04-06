@@ -1,8 +1,8 @@
-package travelfeedback.abdul.com.travelfeedback;
+package travelfeedback.abdul.com.travelfeedback.userHandler;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.Handler;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,27 +24,27 @@ import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.HashMap;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+import travelfeedback.abdul.com.travelfeedback.cloudStorage.File_MainActivity;
+import travelfeedback.abdul.com.travelfeedback.feedbackModule.CityPickerFinal;
+import travelfeedback.abdul.com.travelfeedback.R;
+
 public class LoginActivity extends AppCompatActivity {
 
     private ProgressDialog progressBar;
-    private int progressBarStatus = 0;
-    private Handler progressBarbHandler = new Handler();
+    SweetAlertDialog pDialog;
 
     private FirebaseAuth mAuth;
     EditText editTextUserName, editTextPassword;
     Button buttonLogin;
     String email, password;
     String instanceToken;
+
+    TextView textViewSignUp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        progressBar = new ProgressDialog(this);
-
-        progressBar.setTitle("Logging in...");
-        progressBar.setMessage("Please wait..");
-        progressBar.setCancelable(false);
-        progressBar.setIndeterminate(true);
 
 
         //init FirebaseAuth object
@@ -51,25 +52,27 @@ public class LoginActivity extends AppCompatActivity {
 
         initialise();
 
+        pDialog = new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.PROGRESS_TYPE);
+        pDialog.getProgressHelper().setBarColor(Color.parseColor("#000000"));
+        pDialog.setTitleText("Logging in");
+        pDialog.setCancelable(false);
+
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-
-                progressBar.show();
-
+                pDialog.show();
                signInMethod();
-
-
-
             }
         });
 
-
-
-
-
-
+        textViewSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),SignUpActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -78,6 +81,7 @@ public class LoginActivity extends AppCompatActivity {
         editTextPassword = findViewById(R.id.editTextPassword);
         editTextUserName = findViewById(R.id.editTextUsername);
         buttonLogin = findViewById(R.id.buttonLogin);
+        textViewSignUp = findViewById(R.id.textViewSignUp);
     }
 
     public void signInMethod()
@@ -98,16 +102,14 @@ public class LoginActivity extends AppCompatActivity {
                     addTokenToFirebase(instanceToken,user);
                     Toast.makeText(LoginActivity.this,"Signed in!",Toast.LENGTH_SHORT).show();
 
-                    progressBar.dismiss();
-
+                    pDialog.dismissWithAnimation();
                     onSuccessfulSignIn();
-
                 }
                 else
                 {
                     Log.println(Log.INFO, "mytag" , "Sign in failed");
                     Toast.makeText(LoginActivity.this,"Authentication Failed",Toast.LENGTH_SHORT).show();
-                    progressBar.dismiss();
+                    pDialog.dismissWithAnimation();
                 }
             }
         });
@@ -116,7 +118,8 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onSuccessfulSignIn()
     {
-        Intent intent = new Intent(this, CityPickerFinal.class);
+//        Intent intent = new Intent(this, CityPickerFinal.class);
+        Intent intent = new Intent(this, File_MainActivity.class);
         startActivity(intent);
 
     }
@@ -124,6 +127,7 @@ public class LoginActivity extends AppCompatActivity {
     public void addTokenToFirebase(String fcmToken,FirebaseUser signedInUser)
     {
         String email = signedInUser.getEmail();
+        String userID = signedInUser.getUid();
         String name=" ";
         if(email.equals("abdulwasay50@gmail.com") || email.equals("akshayphadnis1994@gmail.com"))
         {
@@ -148,8 +152,14 @@ public class LoginActivity extends AppCompatActivity {
 
             firebaseDatabase.child("adminToken").child(name).setValue(tokenDetails);
             Log.d("myTag" , "Written FCM Token to Firebase");
+
+            //now for user
+            HashMap<String,String> adminInfo = new HashMap<>();
+            adminInfo.put("name",name); adminInfo.put("residence","Pune");
+            firebaseDatabase.child("users").child(userID).child("info").setValue(adminInfo);
+            firebaseDatabase.child("users").child(userID).child("token").setValue(fcmToken);
         }
-        else if (email.equals("ritvik.bhavan@gmail.com"))
+        /*else if (email.equals("ritvik.bhavan@gmail.com"))
         {
             name = "Ritvik";
             DatabaseReference firebaseDatabase;
@@ -159,10 +169,14 @@ public class LoginActivity extends AppCompatActivity {
             tripData.put("dateTimeStamp","2345");
             tripData.put("token",fcmToken);
             firebaseDatabase.child("tripList").child(name).setValue(tripData);
-        }
+        }*/
         else
         {
-            //Do nothing with token since user isn't admin
+            //user is not admin
+            DatabaseReference databaseReference;
+            databaseReference = FirebaseDatabase.getInstance().getReference();
+
+            databaseReference.child("users").child(userID).child("token").setValue(fcmToken);
 
         }
 

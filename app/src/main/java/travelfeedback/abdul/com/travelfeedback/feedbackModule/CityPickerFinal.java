@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -43,7 +42,6 @@ public class CityPickerFinal extends AppCompatActivity {
     List<String> categories;
     Handler handler;
     TextView textview;
-    FloatingActionButton logOutButton;
 
 
     @Override
@@ -89,15 +87,6 @@ public class CityPickerFinal extends AppCompatActivity {
             }
         });
 
-        logOutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(CityPickerFinal.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
-            }
-
-        });
 
     }
 
@@ -159,18 +148,9 @@ public class CityPickerFinal extends AppCompatActivity {
         editTextSearch = (EditText) findViewById(R.id.editTextSearch);
         listView = (ListView) findViewById(R.id.listView);
         textView = (TextView) findViewById(R.id.textViewHelper);
-        logOutButton = (FloatingActionButton)findViewById(R.id.signOut);
         resultsCities = new String[100];
 
 
     }
-
-    @Override
-    public void onBackPressed()
-    {
-        Intent intent = new Intent(CityPickerFinal.this,CityPickerFinal.class);
-        startActivity(intent);
-    }
-
 }
 

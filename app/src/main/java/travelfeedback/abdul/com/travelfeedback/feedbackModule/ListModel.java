@@ -1,4 +1,4 @@
-package travelfeedback.abdul.com.travelfeedback;
+package travelfeedback.abdul.com.travelfeedback.feedbackModule;
 
 /**
  * Created by Akshay on 23/03/18.

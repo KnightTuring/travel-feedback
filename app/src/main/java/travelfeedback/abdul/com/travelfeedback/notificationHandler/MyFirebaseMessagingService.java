@@ -1,4 +1,4 @@
-package travelfeedback.abdul.com.travelfeedback;
+package travelfeedback.abdul.com.travelfeedback.notificationHandler;
 
 import android.util.Log;
 
